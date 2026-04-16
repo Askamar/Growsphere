@@ -1,0 +1,14 @@
+[
+  {
+    "id": "first-sip",
+    "title": "First SIP set",
+    "description": "You set up a small, regular investment. Time in market > timing the market.",
+    "points": 50
+  },
+  {
+    "id": "diversified",
+    "title": "Diversified start",
+    "description": "You spread investments across at least 3 assets.",
+    "points": 30
+  }
+]

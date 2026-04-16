@@ -1,0 +1,11 @@
+{
+  "invested": 1200,
+  "sip": 100,
+  "xirr": 0.042,
+  "riskScore": 45,
+  "holdings": [
+    { "symbol": "NIFTY50", "name": "Index Fund", "qty": 2, "avgPrice": 200, "pnl": 25.4 },
+    { "symbol": "GOLD", "name": "Gold ETF", "qty": 1, "avgPrice": 600, "pnl": -5.2 },
+    { "symbol": "DEBT", "name": "Debt Fund", "qty": 3, "avgPrice": 133, "pnl": 4.1 }
+  ]
+}
