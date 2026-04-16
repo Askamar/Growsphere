@@ -7,6 +7,7 @@ import Learn from './pages/Learn'
 import Goals from './pages/Goals'
 import SIPPlanner from './pages/SIPPlanner'
 import Explore from './pages/Explore'
+import Profile from './pages/Profile'
 import { getJSON, setJSON } from './shared/storage'
 import AIChatbot from './shared/AIChatbot'
 
@@ -28,6 +29,7 @@ export default function App() {
           <NavLink to="/portfolio">Portfolio</NavLink>
           <NavLink to="/learn">Learn</NavLink>
           <NavLink to="/explore">Explore</NavLink>
+          <NavLink to="/profile">Profile</NavLink>
           <NavLink to="/goals">Goals</NavLink>
           <NavLink to="/sip">SIP Planner</NavLink>
           <button
@@ -46,6 +48,7 @@ export default function App() {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/learn" element={<Learn />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/goals" element={<Goals />} />
           <Route path="/sip" element={<SIPPlanner />} />
         </Routes>
