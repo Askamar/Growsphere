@@ -3,31 +3,79 @@ import Modal from '../shared/Modal'
 
 const lessons = [
   {
-    id: 'compounding',
-    title: 'Compounding: small steps, big outcomes',
+    id: 'intro-investing',
+    title: 'Saving vs. Investing',
     content:
-      'By investing a little regularly, your returns earn returns. Time is the most powerful factor.',
+      'Saving is putting money aside for emergencies. It sits in a bank account and barely grows. Investing is putting your money to work by buying assets (like stocks or mutual funds) that generate more money over time. To beat inflation, you must invest.',
     quiz: {
-      q: 'Which factor matters most for compounding?',
-      options: ['High returns', 'Time invested', 'Picking winners'],
+      q: 'Why is saving alone not enough?',
+      options: ['It is too risky', 'Inflation reduces its purchasing power', 'Banks charge too many fees'],
       answer: 1,
-      explain: 'Time allows compounding to work; chasing high returns increases risk.',
+      explain: 'Inflation makes things more expensive over time. If your money does not grow faster than inflation, you are effectively losing wealth.',
+    },
+  },
+  {
+    id: 'asset-classes',
+    title: 'Understanding Asset Classes',
+    content:
+      'An asset class is a group of similar investments. The main three are: Equities (Stocks - high risk, high reward), Debt (Bonds - lower risk, steady income), and Commodities (Gold - safe haven). A good investor mixes these to balance risk.',
+    quiz: {
+      q: 'Which asset class generally offers the highest potential reward but carries the highest risk?',
+      options: ['Debt (Bonds)', 'Commodities (Gold)', 'Equities (Stocks)'],
+      answer: 2,
+      explain: 'Equities represent ownership in companies. As companies grow, so does stock value, but they are subject to market volatility.',
     },
   },
   {
     id: 'diversification',
     title: 'Diversification reduces risk',
     content:
-      'Spreading investments across assets reduces the impact of any single underperformer.',
+      'Never put all your eggs in one basket. Spreading investments across different assets (like a mix of Equity and Debt) reduces the impact of any single underperforming asset on your overall portfolio.',
     quiz: {
       q: 'Diversification helps by:',
       options: [
         'Guaranteeing profits',
-        'Reducing impact of a single asset',
+        'Reducing impact of a single asset crash',
         'Increasing short-term gains',
       ],
       answer: 1,
-      explain: 'It manages risk; nothing can guarantee profits.',
+      explain: 'Diversification manages risk. It limits your losses if one sector or asset type suddenly crashes.',
+    },
+  },
+  {
+    id: 'start-sip',
+    title: 'The Magic of SIP',
+    content:
+      'SIP stands for Systematic Investment Plan. Instead of trying to guess the right time to enter the market, you invest a fixed small amount every single month. When markets are down, you buy more units. When they are up, you buy fewer. This averages down your cost automatically!',
+    quiz: {
+      q: 'What is the main benefit of an SIP?',
+      options: ['It times the market for you', 'It guarantees 15% returns', 'It enforces automated discipline and averages out costs'],
+      answer: 2,
+      explain: 'SIP removes emotion and forces you to invest consistently regardless of market conditions, averaging out the cost per unit over time.',
+    },
+  },
+  {
+    id: 'compounding',
+    title: 'Compounding: small steps, big outcomes',
+    content:
+      'Compounding is the 8th wonder of the world. It means you earn interest on your original investment, AND on the interest you already earned. The earlier you start and the longer you leave the money, the more exponential the growth becomes.',
+    quiz: {
+      q: 'Which factor matters most for compounding?',
+      options: ['High returns', 'Time invested in the market', 'Picking individual winning stocks'],
+      answer: 1,
+      explain: 'Time is the biggest multiplier in compounding. Even a small return gets massive if left untouched for decades.',
+    },
+  },
+  {
+    id: 'emotions',
+    title: 'Mastering Market Emotions',
+    content:
+      'The stock market goes up and down every day. When it drops 10%, beginners panic sell. Successful investors understand that market crashes are normal and often present the best buying opportunities. Keep calm and stick to the plan.',
+    quiz: {
+      q: 'What should you do during a sudden market crash if your goals are long-term?',
+      options: ['Sell everything immediately to prevent more losses', 'Stop your SIPs until it recovers', 'Stay calm and continue (or increase) your investments'],
+      answer: 2,
+      explain: 'Selling locks in your losses. History proves that markets eventually recover. Buying during a crash means getting assets at a discount.',
     },
   },
 ]
