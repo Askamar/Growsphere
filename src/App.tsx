@@ -8,6 +8,7 @@ import Goals from './pages/Goals'
 import SIPPlanner from './pages/SIPPlanner'
 import Explore from './pages/Explore'
 import { getJSON, setJSON } from './shared/storage'
+import AIChatbot from './shared/AIChatbot'
 
 export default function App() {
   const [theme, setTheme] = useState<string>(() => getJSON<string>('growsphere.theme', 'dark'))
@@ -52,6 +53,7 @@ export default function App() {
       <footer className="footer">
         <small>Investments are subject to market risk. Learn before you invest.</small>
       </footer>
+      <AIChatbot />
     </div>
   )
 }

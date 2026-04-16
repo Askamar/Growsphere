@@ -3,10 +3,12 @@ import AchievementCard from '../shared/AchievementCard'
 import StreakTracker from '../shared/StreakTracker'
 import RiskMeter from '../shared/RiskMeter'
 import { demoAchievements, demoPortfolio } from '../shared/mock'
+import MarketTicker from '../shared/MarketTicker'
 
 export default function Home() {
   return (
     <div className="stack" style={{ gap: '48px' }}>
+      <MarketTicker />
       <section className="hero-section" style={{
         position: 'relative',
         padding: '64px 32px',
