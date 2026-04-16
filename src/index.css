@@ -201,7 +201,7 @@ p {
   box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
 }
 
-.btn:hover {
+.btn:hover:not(:disabled) {
   background: var(--accent-hover);
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
@@ -221,9 +221,16 @@ p {
   background: rgba(59, 130, 246, 0.05);
 }
 
-.btn.secondary:hover {
+.btn.secondary:hover:not(:disabled) {
   background: rgba(59, 130, 246, 0.2);
   border-color: var(--accent2);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 /* Progress / Meters */
