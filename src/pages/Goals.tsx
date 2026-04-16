@@ -19,6 +19,24 @@ export default function Goals() {
   const [name, setName] = useState('')
   const [target, setTarget] = useState<number>(1000)
 
+  const [editingId, setEditingId] = useState<string | null>(null)
+  const [editName, setEditName] = useState('')
+  const [editTarget, setEditTarget] = useState<number>(0)
+
+  const startEdit = (g: Goal) => {
+    setEditingId(g.id)
+    setEditName(g.name)
+    setEditTarget(g.target)
+  }
+
+  const saveEdit = (id: string) => {
+    if (!editName.trim() || editTarget <= 0) return
+    setGoals((g) =>
+      g.map((goal) => (goal.id === id ? { ...goal, name: editName.trim(), target: editTarget } : goal))
+    )
+    setEditingId(null)
+  }
+
   useEffect(() => {
     setJSON(KEY, goals)
   }, [goals])
@@ -59,17 +77,34 @@ export default function Goals() {
       <div className="grid cols-3" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '24px' }}>
         {goals.map((g) => {
           const isComplete = g.saved >= g.target;
+          const isEditing = editingId === g.id;
           return (
             <div key={g.id} className="card" style={{ padding: '32px', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
-              {isComplete && <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '4px', background: 'var(--success)' }} />}
+              {isComplete && !isEditing && <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '4px', background: 'var(--success)' }} />}
               
-              <div style={{ marginBottom: '24px' }}>
-                <strong style={{ fontSize: '1.4rem', display: 'block', marginBottom: '8px' }}>{g.name}</strong>
-                <div className="row" style={{ justifyContent: 'space-between' }}>
-                  <span className="muted">Saved: <span style={{ color: 'var(--text)', fontWeight: 'bold' }}>₹{g.saved}</span></span>
-                  <span className="muted">Target: ₹{g.target}</span>
+              {isEditing ? (
+                <div style={{ marginBottom: '24px' }}>
+                  <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem' }}>Goal Name</label>
+                  <input value={editName} onChange={e => setEditName(e.target.value)} style={{ width: '100%', padding: '10px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--glass-border)', borderRadius: '8px', color: 'var(--text)', marginBottom: '16px' }} />
+                  <label style={{ display: 'block', marginBottom: '8px', fontSize: '0.9rem' }}>Target Amount (₹)</label>
+                  <input type="number" value={editTarget} onChange={e => setEditTarget(Number(e.target.value))} style={{ width: '100%', padding: '10px', background: 'rgba(0,0,0,0.2)', border: '1px solid var(--glass-border)', borderRadius: '8px', color: 'var(--text)' }} />
+                  <div className="row" style={{ marginTop: '20px', gap: '12px' }}>
+                    <button className="btn" onClick={() => saveEdit(g.id)} style={{ flex: 1 }}>Save</button>
+                    <button className="btn secondary" onClick={() => setEditingId(null)} style={{ flex: 1 }}>Cancel</button>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <>
+                  <div style={{ marginBottom: '24px' }}>
+                    <div className="row" style={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <strong style={{ fontSize: '1.4rem', display: 'block', marginBottom: '8px' }}>{g.name}</strong>
+                      <button className="btn secondary" onClick={() => startEdit(g)} style={{ padding: '6px 12px', fontSize: '0.85rem', borderRadius: '6px' }}>Edit</button>
+                    </div>
+                    <div className="row" style={{ justifyContent: 'space-between' }}>
+                      <span className="muted">Saved: <span style={{ color: 'var(--text)', fontWeight: 'bold' }}>₹{g.saved}</span></span>
+                      <span className="muted">Target: ₹{g.target}</span>
+                    </div>
+                  </div>
 
               <div style={{ marginBottom: '32px' }}>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '8px' }}>
@@ -99,7 +134,9 @@ export default function Goals() {
                 </button>
               </div>
 
-              {isComplete && <div style={{ position: 'absolute', bottom: -30, right: -20, fontSize: '8rem', opacity: 0.1, pointerEvents: 'none' }}>🎉</div>}
+              {isComplete && !isEditing && <div style={{ position: 'absolute', bottom: -30, right: -20, fontSize: '8rem', opacity: 0.1, pointerEvents: 'none' }}>🎉</div>}
+                </>
+              )}
             </div>
           );
         })}
