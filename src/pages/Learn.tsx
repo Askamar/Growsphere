@@ -93,19 +93,66 @@ export default function Learn() {
       <div className="card" style={{ padding: '0', overflow: 'hidden' }}>
         {!inQuiz && (
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ padding: '40px 32px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(0,0,0,0))', borderBottom: '1px solid var(--glass-border)' }}>
-              <div className="tag" style={{ marginBottom: '16px', background: 'var(--accent)', color: '#050b14', fontWeight: 'bold', border: 'none' }}>
-                Lesson {idx + 1} of {lessons.length}
+            <div style={{ padding: '40px 32px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(59, 130, 246, 0.15))', borderBottom: '1px solid var(--glass-border)', position: 'relative', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', top: -50, right: -50, fontSize: '12rem', opacity: 0.1, transform: 'rotate(15deg)', pointerEvents: 'none' }}>
+                🎮
               </div>
-              <h2 style={{ fontSize: '2.2rem', marginBottom: '16px', lineHeight: 1.2 }}>{l.title}</h2>
-              <p style={{ fontSize: '1.2rem', color: 'var(--text-muted)', maxWidth: '800px', lineHeight: 1.6 }}>{l.content}</p>
+              <div className="row" style={{ marginBottom: '24px', gap: '12px' }}>
+                <span style={{ 
+                  background: 'linear-gradient(90deg, #f59e0b, #ef4444)', 
+                  color: 'white', 
+                  padding: '6px 16px', 
+                  borderRadius: '8px', 
+                  fontWeight: 900, 
+                  letterSpacing: '2px',
+                  boxShadow: '0 4px 12px rgba(245, 158, 11, 0.3)',
+                  textTransform: 'uppercase',
+                  border: '2px solid rgba(255, 255, 255, 0.2)'
+                }}>
+                  STAGE {String(idx + 1).padStart(2, '0')}
+                </span>
+                <span className="tag" style={{ border: 'none', background: 'rgba(255,255,255,0.1)', color: 'var(--text)' }}>
+                  Level {idx + 1} / {lessons.length}
+                </span>
+                <div style={{ marginLeft: 'auto', display: 'flex', gap: '6px' }}>
+                  {lessons.map((_, i) => (
+                    <div key={i} style={{ 
+                      width: '40px', 
+                      height: '6px', 
+                      background: i <= idx ? 'var(--accent)' : 'rgba(255,255,255,0.1)', 
+                      borderRadius: '4px',
+                      boxShadow: i <= idx ? '0 0 10px var(--accent)' : 'none',
+                      transition: 'all 0.3s ease'
+                    }} />
+                  ))}
+                </div>
+              </div>
+              <h2 style={{ fontSize: '2.5rem', marginBottom: '20px', lineHeight: 1.2, textShadow: '0 2px 10px rgba(0,0,0,0.5)', fontWeight: 800 }}>
+                {l.title}
+              </h2>
+              <div style={{
+                background: 'rgba(0, 0, 0, 0.4)',
+                padding: '24px',
+                borderRadius: '16px',
+                borderLeft: '4px solid var(--accent)',
+                backdropFilter: 'blur(10px)',
+                maxWidth: '900px'
+              }}>
+                <p style={{ fontSize: '1.2rem', color: '#e2e8f0', margin: 0, lineHeight: 1.6 }}>
+                  <span style={{ color: 'var(--accent)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.9rem', display: 'block', marginBottom: '8px' }}>📜 Objective Lore</span>
+                  {l.content}
+                </p>
+              </div>
             </div>
             
             <div style={{ padding: '32px' }}>
               <div className="stack" style={{ gap: '24px' }}>
                 <div>
-                  <strong style={{ fontSize: '1.2rem', display: 'block', marginBottom: '24px', letterSpacing: '-0.01em' }}>
-                    <span style={{ fontSize: '1.5rem', marginRight: '8px' }}>🧠</span> Test your knowledge: <br/>{l.quiz.q}
+                  <strong style={{ display: 'block', marginBottom: '24px' }}>
+                    <div style={{ color: 'var(--warn)', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 800, fontSize: '1rem', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>⚔️</span> Mini-Boss: Knowledge Check
+                    </div>
+                    <span style={{ fontSize: '1.3rem', color: 'var(--text)' }}>{l.quiz.q}</span>
                   </strong>
                   <div className="grid cols-3" style={{ gap: '16px', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
                     {l.quiz.options.map((o, i) => (
@@ -158,17 +205,17 @@ export default function Learn() {
               </div>
             </div>
 
-            <div className="row" style={{ padding: '24px 32px', background: 'rgba(0,0,0,0.2)', borderTop: '1px solid var(--glass-border)' }}>
+            <div className="row" style={{ padding: '24px 32px', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid var(--glass-border)' }}>
               <button className="btn secondary" disabled={idx === 0} onClick={() => { setIdx(idx - 1); setSelected(null); }}>
-                &larr; Previous Lesson
+                &larr; PREV STAGE
               </button>
               <button
                 className="btn"
                 disabled={idx === lessons.length - 1}
                 onClick={() => { setIdx(idx + 1); setSelected(null); }}
-                style={{ marginLeft: 'auto' }}
+                style={{ marginLeft: 'auto', background: 'linear-gradient(90deg, var(--accent), var(--accent2))', color: 'white' }}
               >
-                Next Lesson &rarr;
+                NEXT STAGE &rarr;
               </button>
             </div>
           </div>
